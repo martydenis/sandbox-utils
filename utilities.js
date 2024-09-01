@@ -28,35 +28,6 @@ export function initStopPropagation () {
     }
 }
 
-export function AdjustingInterval (func, interval, errorFunc) {
-    /**
-     * Add support for tab out tab in
-     */
-    const that = this;
-    let expected, timeout;
-    this.interval = interval;
-
-    this.start = function () {
-        expected = Date.now() + this.interval;
-        timeout = setTimeout(step, this.interval);
-    }
-
-    this.stop = function () {
-        clearTimeout(timeout);
-    }
-
-    function step() {
-        var drift = Date.now() - expected;
-        if (drift > that.interval) {
-            // You could have some default stuff here too...
-            if (errorFunc) errorFunc();
-        }
-        func();
-        expected += that.interval;
-        timeout = setTimeout(step, Math.max(0, that.interval - drift));
-    }
-}
-
 export function getAngleBetweenPoints (p1, p2) {
     const dX = p2.x - p1.x;
     const dY = p2.y - p1.y;
@@ -65,6 +36,14 @@ export function getAngleBetweenPoints (p1, p2) {
 
 export function toDegrees (rad) {
     return rad * 180 / Math.PI;
+}
+
+export function easeOut(t) {
+    return 1 - Math.pow(1 - t, 2);
+}
+
+export function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
 }
 
 export function roundToTwo (num) {
