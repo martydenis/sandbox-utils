@@ -38,11 +38,11 @@ export function toDegrees (rad) {
     return rad * 180 / Math.PI;
 }
 
-export function easeOut(t) {
+export function easeOut (t) {
     return 1 - Math.pow(1 - t, 2);
 }
 
-export function easeOutQuart(t) {
+export function easeOutQuart (t) {
     return 1 - Math.pow(1 - t, 4);
 }
 
@@ -50,10 +50,8 @@ export function roundToTwo (num) {
     return +(Math.round(num + "e+2") + "e-2");
 }
 
-export function getDistance (x1, y1, x2, y2) {
-    const xDiff = x2 - x1;
-    const yDiff = y2 - y1;
-    return Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
+export function getDistance (p1, p2) {
+    return Math.hypot(p2.x - p1.x, p2.y - p1.y);
 }
 
 export function dpi (value) {
